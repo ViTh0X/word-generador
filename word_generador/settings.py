@@ -28,7 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','192.168.1.29']
 
-
+# Configuración de seguridad para el despliegue con puerto no estándar
+CSRF_TRUSTED_ORIGINS = [
+    'http://192.168.1.29:8080',
+    'http://192.168.1.29', # Añadimos también sin puerto por si la App 1 lo necesita
+]
 # Application definition
 
 INSTALLED_APPS = [
