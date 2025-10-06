@@ -145,7 +145,8 @@ class CreadorWord():
         
     def parrafo_contenido_princial(self):
         self.parrafo_principal = self.documento.add_paragraph()
-        self.parrafo_principal.paragraph_format.line_spacing = Pt(23)
+        self.parrafo_principal.paragraph_format.line_spacing = Pt(23)        
+        self.parrafo_principal..space_after = Pt(0)
     
     def agregar_contenidos(self,texto1,texto2,tipo):     
         if tipo == 1:

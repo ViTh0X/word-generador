@@ -175,8 +175,8 @@ class Secretobancario1(CreadorWord):
                         text_añadido = f"Oficio {texto}"
                         self.agregar_contenidos("REFERENCIA	: ",text_añadido,1)
                         texto = str(columna['N° Expediente / Carpeta Fiscal / Caso']).replace('_x000D_','').replace('\n',' ').strip()
-                        self.agregar_contenidos("		  ",texto,2)
-                        #self.escrito_final1()
+                        self.agregar_contenidos("		  ",texto,1)
+                        self.escrito_final1()
                         self.escrito_final2()
                         self.tabla_secreto_bancario()                        
                         try:                    
