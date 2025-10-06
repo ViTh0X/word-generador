@@ -154,7 +154,7 @@ class CreadorWord():
             run3.font.name = "Arial Narrow"
             run3.font.size = Pt(11)  
             run3.bold = True
-            run4 = self.parrafo_principal.add_run(f"{texto2}")
+            run4 = self.parrafo_principal.add_run(f"{texto2}\n")
             run4.font.name = "Arial Narrow"
             run4.font.size = Pt(11)
         else:
@@ -162,18 +162,9 @@ class CreadorWord():
             run3.font.name = "Arial Narrow"
             run3.font.size = Pt(11)  
             run3.bold = True
-            run4 = self.parrafo_principal.add_run(f"{texto2}")
+            run4 = self.parrafo_principal.add_run(texto2)
             run4.font.name = "Arial Narrow"
             run4.font.size = Pt(11)
-            texto_completo = "CAJA RURAL DE AHORRO Y CRÉDITO INCASUR S.A."
-            run1 = self.parrafo_principal.add_run(texto_completo)
-            run1.font.name = "Arial Narrow"
-            run1.font.size = Pt(11)  
-            run1.bold = True
-            texto_completo = ", inscrita en la Partida Registral Nº 11179010 del Registro de Personas Jurídicas de la Oficina Registral de Arequipa, con domicilio en Av. Vidaurrázaga 112-A, Parque Industrial, distrito, provincia y departamento de Arequipa, a usted decimos:\t"
-            run2 = self.parrafo_principal.add_run(texto_completo)
-            run2.font.name = "Arial Narrow"
-            run2.font.size = Pt(11)   
 
     def escrito_final1(self):
         parrafo = self.documento.add_paragraph()
