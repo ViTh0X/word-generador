@@ -160,8 +160,7 @@ class Secretobancario1(CreadorWord):
             self.crear_cabezera()
             self.crear_piepagina()
             for fila, columna  in df.iterrows():
-                numeroOficio = columna['N° Oficio de la Autoridad'].replace('_x000D_','').replace('\n',' ').strip()                    
-                #***************Nombre del documento se usara como codigo Unico**************
+                numeroOficio = columna['N° Oficio de la Autoridad'].replace('_x000D_','').replace('\n',' ').strip()                                    
                 nombreDocumento = numeroOficio.replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ')            
                 if nombreDocumento != ultimoCodigoUsado:
                     try:                        
@@ -177,7 +176,7 @@ class Secretobancario1(CreadorWord):
                         self.agregar_contenidos("REFERENCIA	: ",text_añadido)
                         texto = str(columna['N° Expediente / Carpeta Fiscal / Caso']).replace('_x000D_','').replace('\n',' ').strip()
                         self.agregar_contenidos("		  ",texto)
-                        self.escrito_final1()
+                        #self.escrito_final1()
                         self.escrito_final2()
                         self.tabla_secreto_bancario()                        
                         try:                    
