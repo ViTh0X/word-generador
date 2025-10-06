@@ -152,7 +152,7 @@ class CreadorWord():
         run3.font.name = "Arial Narrow"
         run3.font.size = Pt(11)  
         run3.bold = True
-        run4 = self.parrafo_principal.add_run(f"{texto2}\n")
+        run4 = self.parrafo_principal.add_run(f"{texto2}")
         run4.font.name = "Arial Narrow"
         run4.font.size = Pt(11)
         texto_completo = "CAJA RURAL DE AHORRO Y CRÉDITO INCASUR S.A."
