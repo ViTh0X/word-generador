@@ -13,8 +13,9 @@ class Secretobancario1(CreadorWord):
     def generar_word_1(self):
         df = pd.read_excel(self.archivo,dtype={"N° Documento Identidad":str})
         df = df.sort_values(by="N° Envío",ascending=True)
-        listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()
-        listaLimpia = [elemento.replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio]                        
+        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("-")
+        listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()                    
+        listaLimpia = [str(elemento).replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio] 
         ultimoCodigoUsado =""
         posicion = 0
         try:
@@ -141,7 +142,8 @@ class Secretobancario1(CreadorWord):
     def generar_word_2(self,dia,mes,año,correlativo):
         df = pd.read_excel(self.archivo,dtype={"N° Documento Identidad":str})
         listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()
-        listaLimpia = [elemento.replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio]                        
+        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("-")
+        listaLimpia = [str(elemento).replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio]                        
         ultimoCodigoUsado =""
         posicion = 0
         numero_correlativo = int(correlativo)
