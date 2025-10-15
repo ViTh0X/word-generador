@@ -13,7 +13,7 @@ class Secretobancario1(CreadorWord):
     def generar_word_1(self):
         df = pd.read_excel(self.archivo,dtype={"N° Documento Identidad":str})
         df = df.sort_values(by="N° Envío",ascending=True)
-        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("-")
+        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("X")
         listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()                    
         listaLimpia = [str(elemento).replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio] 
         ultimoCodigoUsado =""
@@ -141,8 +141,8 @@ class Secretobancario1(CreadorWord):
             
     def generar_word_2(self,dia,mes,año,correlativo):
         df = pd.read_excel(self.archivo,dtype={"N° Documento Identidad":str})
-        listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()
-        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("-")
+        df["N° Oficio de la Autoridad"] = df["N° Oficio de la Autoridad"].fillna("X")
+        listaCodEnvio = df["N° Oficio de la Autoridad"].tolist()        
         listaLimpia = [str(elemento).replace('_x000D_','').replace('\n',' ').replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ') for elemento in listaCodEnvio]                        
         ultimoCodigoUsado =""
         posicion = 0
@@ -164,7 +164,7 @@ class Secretobancario1(CreadorWord):
             for fila, columna  in df.iterrows():
                 numeroOficio = columna['N° Oficio de la Autoridad'].replace('_x000D_','').replace('\n',' ').strip()                                    
                 nombreDocumento = numeroOficio.replace('/',' ').replace(':',' ').replace('*',' ').replace('?',' ').replace('"',' ').replace('<',' ').replace('>',' ').replace('|',' ')            
-                if nombreDocumento != ultimoCodigoUsado:
+                if nombreDocumento != ultimoCodigoUsado:                    
                     try:                        
                         contador = 1                                  
                         self.titulo_secreto_bancario(mes_texto,año,numero_correlativo)
@@ -223,14 +223,14 @@ class Secretobancario1(CreadorWord):
                     self.dataCuadros["Tipo Documento"] = str(columna['Tipo Documento Identidad'])
                     self.dataCuadros["N° Documento"] = str(columna['N° Documento Identidad'])
                     self.añadir_fila_sb(self.dataCuadros)               
-                    if posicion+1 <= len(listaLimpia)-1:                                
+                    if posicion+1 <= len(listaLimpia)-1:                                   
+                        ndoc = str(listaLimpia[posicion+1]).strip()                        
                         if nombreDocumento == str(listaLimpia[posicion+1]).strip():
                             ultimoCodigoUsado = nombreDocumento
                             self.dataCuadros = {}
                             posicion +=1
                             continue                
-                        else:   
-                            #print("Ingreso parte final y salto de pagina2")              
+                        else:                                           
                             ultimoCodigoUsado = nombreDocumento
                             self.agregar_texto_normal()
                             self.agregar_texto_derecha(dia_texto,mes_texto,año)
